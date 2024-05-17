@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "./home.css"; // Make sure the path matches where you save your CSS file
-import bgImage from "./bg.png"; // Import the image
+//import bgImage from "./bg.png"; // Import the image
 
 function Home() {
   return (
@@ -33,6 +33,7 @@ function Home() {
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 }
