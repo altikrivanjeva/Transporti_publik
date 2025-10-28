@@ -1,12 +1,53 @@
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Stops from "./components/Stops";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 
 function App() {
+  const [page, setPage] = useState("login");
+  const [user, setUser] = useState(null);
+
+  // ✅ Lexo user nga localStorage në fillim
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setPage("dashboard");
+    }
+  }, []);
+
+  // Kur bëhet login
+  const handleLogin = (loggedUser) => {
+    localStorage.setItem("user", JSON.stringify(loggedUser));
+    setUser(loggedUser);
+    setPage("dashboard");
+  };
+
+  // Kur bëhet logout
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    setPage("login");
+  };
+
   return (
     <div>
-      <Header />
-      <div className="max-w-4xl mx-auto mt-8">
-        <Stops />
+      {/* Header merr user + onLogout + onNavigate */}
+      <Header onNavigate={setPage} user={user} onLogout={handleLogout} />
+
+      <div className="max-w-6xl mx-auto mt-10 px-6">
+        {/* Nëse user është loguar → Dashboard */}
+        {user && page === "dashboard" && <Dashboard onLogout={handleLogout} />}
+
+        {/* Nëse s’është loguar → Login / Register */}
+        {!user && page === "login" && <Login onLogin={handleLogin} />}
+        {!user && page === "register" && <Register />}
+
+        {/* Faqet e tjera (mund t’i shtosh me vonë) */}
+        {page === "home" && <p className="text-center text-lg mt-20">Faqja kryesore</p>}
+        {page === "lines" && <p className="text-center text-lg mt-20">Faqja e linjave</p>}
+        {page === "contact" && <p className="text-center text-lg mt-20">Faqja e kontaktit</p>}
       </div>
     </div>
   );

@@ -8,9 +8,10 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "express": "^4.19.0",
-    "mysql2": "^3.11.0",
-    "cors": "^2.8.5"
+    "mysql2": "^3.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
