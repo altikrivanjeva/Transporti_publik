@@ -29,7 +29,7 @@ function Register() {
     <div className="flex justify-center mt-10">
       <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">
-          🧍‍♂️ Regjistrohu
+        Regjistrohu
         </h1>
 
         <form onSubmit={handleRegister} className="space-y-4">
