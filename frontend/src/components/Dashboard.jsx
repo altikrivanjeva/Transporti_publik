@@ -14,7 +14,7 @@ function Dashboard({ onLogout }) {
           onClick={() => setActivePage("stops")}
           className={`px-4 py-2 rounded-lg font-semibold transition ${
             activePage === "stops"
-              ? "bg-teal-500 text-white"
+              ? "bg-orange-500 text-white"
               : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
           }`}
         >
@@ -25,7 +25,7 @@ function Dashboard({ onLogout }) {
           onClick={() => setActivePage("users")}
           className={`px-4 py-2 rounded-lg font-semibold transition ${
             activePage === "users"
-              ? "bg-teal-500 text-white"
+              ? "bg-orange-500 text-white"
               : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
           }`}
         >

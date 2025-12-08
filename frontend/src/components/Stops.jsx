@@ -61,9 +61,9 @@ function Stops() {
   };
 
   return (
-    <div className="flex justify-center mt-10">
-      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md border border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+    <div className="flex justify-center mt-10 ">
+      <div className="bg-black/30 shadow-lg rounded-2xl p-6 w-full max-w-md border-2 border-orange-500/50">
+        <h1 className="text-2xl font-bold text-white mb-4 text-center">
           Shto Stacionet
         </h1>
 
@@ -77,7 +77,7 @@ function Stops() {
           />
           <button
             onClick={addStop}
-            className="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
+            className="bg-orange-500 hover:bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
           >
             Shto
           </button>
