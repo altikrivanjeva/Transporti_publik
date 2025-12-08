@@ -6,9 +6,9 @@ const router = express.Router();
 
 // 🟢 Register
 router.post("/register", (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-  if (!name || !email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({ message: "Plotëso të gjitha fushat!" });
   }
 
@@ -22,8 +22,8 @@ router.post("/register", (req, res) => {
     const hash = bcrypt.hashSync(password, 10);
 
     db.query(
-      "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
-      [name, email, hash],
+      "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
+      [username, email, hash],
       (err2) => {
         if (err2)
           return res.status(500).json({ message: "Gabim gjatë regjistrimit!" });
@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
 
     return res.json({
       message: "Hyrja u krye me sukses!",
-      user: { id: user.id, name: user.name, email: user.email },
+      user: { id: user.id, username: user.username, email: user.email },
     });
   });
 });

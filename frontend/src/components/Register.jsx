@@ -10,10 +10,21 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    // Client-side validation
+    if (!username.trim() || !email.trim() || !password.trim()) {
+      setMessage("Plotëso të gjitha fushat!");
+      return;
+    }
+
+    if (password.length < 6) {
+      setMessage("Fjalëkalimi duhet të ketë të paktën 6 karaktere!");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:5001/auth/register", {
-        username,
-        email,
+        username: username.trim(),
+        email: email.trim(),
         password,
       });
       setMessage(res.data.message);
@@ -21,7 +32,9 @@ function Register() {
       setEmail("");
       setPassword("");
     } catch (err) {
-      setMessage(err.response?.data?.message || "Gabim gjatë regjistrimit!");
+      const errorMsg = err.response?.data?.message || err.message || "Gabim gjatë regjistrimit!";
+      setMessage(errorMsg);
+      console.error("Registration error:", err);
     }
   };
 
@@ -38,6 +51,7 @@ function Register() {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400"
           />
           <input
@@ -45,19 +59,23 @@ function Register() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400"
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Password (min 6 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="6"
             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400"
           />
 
           <button
             type="submit"
-            className="bg-teal-500 hover:bg-teal-600 text-white w-full py-2 rounded-lg font-semibold"
+            disabled={!username.trim() || !email.trim() || !password.trim()}
+            className="bg-teal-500 hover:bg-teal-600 disabled:bg-gray-400 text-white w-full py-2 rounded-lg font-semibold transition"
           >
             Regjistrohu
           </button>
@@ -68,7 +86,11 @@ function Register() {
         </form>
 
         {message && (
-          <p className="text-center mt-4 text-gray-700 font-medium">{message}</p>
+          <p className={`text-center mt-4 font-medium ${
+            message.includes("sukses") ? "text-green-600" : "text-red-600"
+          }`}>
+            {message}
+          </p>
         )}
       </div>
     </div>
