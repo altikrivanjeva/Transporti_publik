@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -39,6 +40,9 @@ function App() {
       <div className="max-w-6xl mx-auto mt-10 px-6">
         {/* Nëse user është loguar → Dashboard */}
         {user && page === "dashboard" && <Dashboard onLogout={handleLogout} />}
+
+        {/* Home page */}
+        {page === "home" && <Home />}
 
         {/* Nëse s’është loguar → Login / Register */}
         {!user && page === "login" && <Login onLogin={handleLogin} />}

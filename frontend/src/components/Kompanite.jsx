@@ -32,6 +32,21 @@ function Companies() {
       alert("Plotëso emrin!");
       return;
     }
+    if (!newPhone.trim()) {
+      alert("Plotëso numrin e telefonit!");
+      return;
+    }
+
+    // pas trim checks për name
+    const phoneClean = String(newPhone).trim();
+    // lejo formatin: opcional + në fillim, pastaj 7-15 shifra
+    const phoneRegex = /^\+?\d{7,15}$/;
+    if (!phoneRegex.test(phoneClean)) {
+      alert(
+        "Numri i telefonit duhet të përbëhet nga 7-15 shifra dhe mund të fillojë me +"
+      );
+      return;
+    }
 
     try {
       const res = await axios.post(API_URL, {
@@ -68,6 +83,10 @@ function Companies() {
       alert("Plotëso emrin!");
       return;
     }
+    if (!editPhone.trim()) {
+      alert("Plotëso numrin e telefonit!");
+      return;
+    }
 
     try {
       const res = await axios.put(`${API_URL}/${id}`, {
@@ -100,11 +119,25 @@ function Companies() {
             className="border px-4 py-2 rounded-lg"
           />
           <input
-            type="text"
+            type="tel"
             placeholder="Telefoni"
             value={newPhone}
-            onChange={(e) => setNewPhone(e.target.value)}
+            onChange={(e) => {
+              // lejo + vetëm në fillim, hiq çdo gjë tjetër që nuk është shifër ose +
+              let v = e.target.value;
+              // heq karakteret të gjitha përveç shifrave dhe +
+              v = v.replace(/[^\d+]/g, "");
+              // nëse ka + më shumë se një, lë vetëm të parin
+              if ((v.match(/\+/g) || []).length > 1) {
+                v = v.replace(/\+/g, "");
+                v = "+" + v;
+              }
+              // siguro që + mund të jetë vetëm në fillim
+              if (v.indexOf("+") > 0) v = v.replace(/\+/g, "");
+              setNewPhone(v);
+            }}
             className="border px-4 py-2 rounded-lg"
+            required
           />
           <input
             type="email"
@@ -122,7 +155,7 @@ function Companies() {
         </button>
       </div>
 
-      {/* 📋 TABELA */}
+     
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-300">
           <thead className="bg-gray-200">
@@ -150,7 +183,7 @@ function Companies() {
                     </td>
                     <td className="border p-3">
                       <input
-                        type="text"
+                        type="tel"
                         value={editPhone}
                         onChange={(e) => setEditPhone(e.target.value)}
                         className="border px-2 py-1 rounded w-full"
