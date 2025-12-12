@@ -4,10 +4,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
+import PublicCompanies from "./components/PublicCompanies";
+import CompanyPage from "./components/CompanyPage";
 
 function App() {
   const [page, setPage] = useState("login");
   const [user, setUser] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   // ✅ Lexo user nga localStorage në fillim
   useEffect(() => {
@@ -43,6 +46,21 @@ function App() {
 
         {/* Home page */}
         {page === "home" && <Home />}
+
+        {/* Publike: lista e kompanive */}
+        {page === "bus-companies" && (
+          <PublicCompanies
+            onOpenCompany={(company) => {
+              setSelectedCompany(company);
+              setPage("company");
+            }}
+          />
+        )}
+
+        {/* Faqe e kompanisë (detajet + bileta) */}
+        {page === "company" && selectedCompany && (
+          <CompanyPage company={selectedCompany} onBack={() => setPage("bus-companies")} />
+        )}
 
         {/* Nëse s’është loguar → Login / Register */}
         {!user && page === "login" && <Login onLogin={handleLogin} />}

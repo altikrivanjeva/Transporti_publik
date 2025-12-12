@@ -50,6 +50,45 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-white border-t mt-20 pt-12 pb-6">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left mb-10">
+            {/* Travel */}
+            <div>
+              <div className="uppercase text-gray-500 font-semibold tracking-widest mb-4">Travel</div>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-blue-600 transition font-medium">Bileta Autobusi</a></li>
+                
+              </ul>
+            </div>
+            {/* About */}
+            <div>
+              <div className="uppercase text-gray-500 font-semibold tracking-widest mb-4">About</div>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-blue-600 transition font-medium">Rreth Nesh</a></li>
+               
+              </ul>
+            </div>
+            {/* Customer Service */}
+            <div>
+              <div className="uppercase text-gray-500 font-semibold tracking-widest mb-4">Customer Service</div>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-blue-600 transition font-medium">Kontakt</a></li>
+                <li><a href="#" className="hover:text-blue-600 transition font-medium">Kompanitë</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:flex-row md:justify-start gap-3 mt-8">
+           
+            <span className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-white shadow-md border">
+              <img src="https://cdn0.iconfinder.com/data/icons/citycons/150/Citycons_bus-512.png" alt="Logo" className="h-12 w-12 object-contain" />
+            </span>
+          </div>
+          <div className="text-center md:text-left text-gray-400 text-xs mt-4 ml-0 md:ml-14">© {new Date().getFullYear()} Transporti Publik. Të gjitha të drejtat e rezervuara.</div>
+        </div>
+      </footer>
     </div>
   );
 }
