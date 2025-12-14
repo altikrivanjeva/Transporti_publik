@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const LOGO_URL = "https://cdn0.iconfinder.com/data/icons/citycons/150/Citycons_bus-512.png"; 
+
 
 function Header({ onNavigate, user, onLogout }) {
   
@@ -9,7 +9,7 @@ function Header({ onNavigate, user, onLogout }) {
   const textColor = 'gray-800'; 
   const hoverColor = 'green-600'; 
   const accentColor = 'blue-700'; 
-
+ 
   return (
     
     <header className={`bg-${bgColor} shadow-lg`}>
@@ -22,11 +22,17 @@ function Header({ onNavigate, user, onLogout }) {
               onClick={() => onNavigate("home")}
               className="flex items-center cursor-pointer" 
             >
-              <img 
-                src={LOGO_URL} 
-                alt="Urban Transit Connect Logo" 
-                className="h-10 w-auto" 
-              />
+              <span className="h-10 w-10 flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="19" stroke="#e7c873" strokeWidth="2" fill="white" />
+                  <rect x="11" y="10" width="18" height="14" rx="3" fill="#e7c873" />
+                  <rect x="13.5" y="13" width="13" height="7" rx="1.5" fill="white" />
+                  <rect x="17" y="21" width="2.5" height="3" rx="1" fill="#e7c873" />
+                  <rect x="20.5" y="21" width="2.5" height="3" rx="1" fill="#e7c873" />
+                  <circle cx="15.5" cy="25.5" r="1.5" fill="#e7c873" />
+                  <circle cx="24.5" cy="25.5" r="1.5" fill="#e7c873" />
+                </svg>
+              </span>
               
             </a>
           </div>
@@ -85,16 +91,16 @@ function Header({ onNavigate, user, onLogout }) {
                 <>
                   <button
                     onClick={() => onNavigate("login")}
-                    className={`rounded-md bg-green-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-600 transition-colors shadow-md`}
+                    className="rounded-md bg-[#e7c873] hover:bg-[#000000] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md"
                   >
                     Login
                   </button>
 
                   <button
                     onClick={() => onNavigate("register")}
-                    className={`rounded-md bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-600 transition-colors shadow-md hidden sm:block`}
+                    className="rounded-md bg-[#e7c873] hover:bg-[#000000] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md hidden sm:block"
                   >
-                    Register
+                    Regjistro
                   </button>
                 </>
               ) : (

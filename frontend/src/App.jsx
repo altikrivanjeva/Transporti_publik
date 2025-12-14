@@ -45,7 +45,7 @@ function App() {
         {user && page === "dashboard" && <Dashboard onLogout={handleLogout} />}
 
         {/* Home page */}
-        {page === "home" && <Home />}
+        {page === "home" && <Home onNavigate={setPage} />}
 
         {/* Publike: lista e kompanive */}
         {page === "bus-companies" && (
