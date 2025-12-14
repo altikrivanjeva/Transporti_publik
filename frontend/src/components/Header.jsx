@@ -5,14 +5,14 @@ import React from "react";
 
 function Header({ onNavigate, user, onLogout }) {
   
-  const bgColor = 'white'; 
-  const textColor = 'gray-800'; 
-  const hoverColor = 'green-600'; 
-  const accentColor = 'blue-700'; 
+  const bgColor = '#0a223a'; 
+  const textColor = 'gray-100'; 
+  const hoverColor = 'yellow-400'; 
+  const accentColor = 'yellow-400'; 
  
   return (
     
-    <header className={`bg-${bgColor} shadow-lg`}>
+    <header className="shadow-lg" style={{ background: bgColor }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           
@@ -45,8 +45,7 @@ function Header({ onNavigate, user, onLogout }) {
                 <li>
                   <button
                     onClick={() => onNavigate("stations")}
-                    
-                    className={`text-${textColor} transition hover:text-${hoverColor} font-medium`}
+                    className="text-white transition hover:text-yellow-400 font-medium"
                   >
                     Stacionet
                   </button>
@@ -55,7 +54,7 @@ function Header({ onNavigate, user, onLogout }) {
                 <li>
                   <button
                     onClick={() => onNavigate("lines")}
-                    className={`text-${textColor} transition hover:text-${hoverColor} font-medium`}
+                    className="text-white transition hover:text-yellow-400 font-medium"
                   >
                     Linjat
                   </button>
@@ -64,7 +63,7 @@ function Header({ onNavigate, user, onLogout }) {
                 <li>
                   <button
                     onClick={() => onNavigate("bus-companies")}
-                    className={`text-${textColor} transition hover:text-${hoverColor} font-medium`}
+                    className="text-white transition hover:text-yellow-400 font-medium"
                   >
                     Kompanitë e Autobusëve
                   </button>
@@ -91,14 +90,14 @@ function Header({ onNavigate, user, onLogout }) {
                 <>
                   <button
                     onClick={() => onNavigate("login")}
-                    className="rounded-md bg-[#e7c873] hover:bg-[#000000] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md"
+                    className="rounded-md bg-[#f97316] hover:bg-[#ea580c] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md"
                   >
                     Login
                   </button>
 
                   <button
                     onClick={() => onNavigate("register")}
-                    className="rounded-md bg-[#e7c873] hover:bg-[#000000] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md hidden sm:block"
+                    className="rounded-md bg-[#f97316] hover:bg-[#ea580c] px-5 py-2.5 text-sm font-medium text-white transition-colors shadow-md hidden sm:block"
                   >
                     Regjistro
                   </button>

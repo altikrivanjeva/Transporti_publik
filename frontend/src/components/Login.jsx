@@ -47,7 +47,7 @@ function Login({ onLogin }) {
           />
           <button
             type="submit"
-            className="bg-teal-500 hover:bg-teal-600 text-white w-full py-2 rounded-lg font-semibold"
+            className="bg-[#f97316] hover:bg-[#ea580c] text-white w-full py-2 rounded-lg font-semibold"
           >
             Hyr
           </button>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Footer from "./Footer";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -42,25 +43,28 @@ function Companies() {
     // lejo formatin: opcional + në fillim, pastaj 7-15 shifra
     const phoneRegex = /^\+?\d{7,15}$/;
     if (!phoneRegex.test(phoneClean)) {
-      alert(
-        "Numri i telefonit duhet të përbëhet nga 7-15 shifra dhe mund të fillojë me +"
-      );
-      return;
-    }
+      return (
+        <>
+          <div>
+            <div className="max-w-5xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
+              <h1 className="text-2xl font-bold mb-6 text-center">Kompanitë e Autobusëve</h1>
+              <div className="mb-6 flex flex-col md:flex-row gap-4 md:items-end">
+                {/* ...existing code... */}
+              </div>
+              <table className="w-full border mt-4">
+                {/* ...existing code... */}
+              </table>
+            </div>
 
-    try {
-      const res = await axios.post(API_URL, {
-        name: newName,
-        phone: newPhone,
-        email: newEmail,
-      });
-      setCompanies([...companies, res.data]);
-      setNewName("");
-      setNewPhone("");
-      setNewEmail("");
-      alert("Kompania u shtua!");
-    } catch (err) {
-      console.error("handleAdd error:", err);
+            {companies.length === 0 && (
+              <p className="text-center text-gray-500 mt-6">
+                Nuk ka kompanitë. Shto një të re!
+              </p>
+            )}
+          </div>
+          <Footer />
+        </>
+      );
       alert(err.response?.data?.message || "Gabim gjatë shtimit!");
     }
   };

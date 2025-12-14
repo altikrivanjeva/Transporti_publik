@@ -75,7 +75,7 @@ function Register() {
           <button
             type="submit"
             disabled={!username.trim() || !email.trim() || !password.trim()}
-            className="bg-teal-500 hover:bg-teal-600 disabled:bg-gray-400 text-white w-full py-2 rounded-lg font-semibold transition"
+            className="bg-[#f97316] hover:bg-[#ea580c] disabled:bg-gray-400 text-white w-full py-2 rounded-lg font-semibold transition"
           >
             Regjistrohu
           </button>

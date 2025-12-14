@@ -67,7 +67,6 @@ function App() {
         {!user && page === "register" && <Register />}
 
         {/* Faqet e tjera (mund t’i shtosh me vonë) */}
-        {page === "home" && <p className="text-center text-lg mt-20">Faqja kryesore</p>}
         {page === "lines" && <p className="text-center text-lg mt-20">Faqja e linjave</p>}
         {page === "contact" && <p className="text-center text-lg mt-20">Faqja e kontaktit</p>}
       </div>

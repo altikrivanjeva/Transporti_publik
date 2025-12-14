@@ -1,6 +1,7 @@
 import React from "react";
 import heroImg from "../assets/bus.avif";
 import trafikUrban from "../assets/Trafik-urban.webp";
+import Footer from "./Footer";
 
 function Home({ onNavigate }) {
   return (
@@ -19,7 +20,7 @@ function Home({ onNavigate }) {
                   <input className="flex-1 border rounded px-4 py-2" placeholder="Nisja" />
                   <input className="flex-1 border rounded px-4 py-2" placeholder="Destinacioni" />
                   <input type="date" className="border rounded px-4 py-2" />
-                  <button className="bg-[#e7c873] hover:bg-[#000000] text-white px-6 py-2 rounded transition">Kërko</button>
+                  <button className="bg-[#f97316] hover:bg-[#ea580c] text-white px-6 py-2 rounded transition">Kërko</button>
                 </div>
               </div>
             </div>
@@ -31,25 +32,25 @@ function Home({ onNavigate }) {
       <section className="py-12 bg-gray-50 mb-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow text-center">
+            <div className="bg-white p-6 rounded-lg shadow text-center cursor-pointer transition hover:bg-[#0a223a] hover:text-white group">
               <div className="text-3xl mb-3">📍</div>
-              <h3 className="font-semibold mb-2" style={{ color: '#e7c873' }}>Gjej Stacione</h3>
-              <p className="text-gray-600">Të dhëna të plota për stacionet, oraret dhe afërsinë me vendndodhjen tuaj.</p>
+              <h3 className="font-semibold mb-2 group-hover:text-white" style={{ color: '#e7c873' }}>Gjej Stacione</h3>
+              <p className="text-gray-600 group-hover:text-white">Të dhëna të plota për stacionet, oraret dhe afërsinë me vendndodhjen tuaj.</p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow text-center">
+            <div className="bg-white p-6 rounded-lg shadow text-center cursor-pointer transition hover:bg-[#0a223a] hover:text-white group">
               <div className="text-3xl mb-3">🗺️</div>
-              <h3 className="font-semibold mb-2" style={{ color: '#e7c873' }}>Eksploro Linjat</h3>
-              <p className="text-gray-600">Shiko hartën e linjave dhe zgjedh rrugën më të mirë për udhëtimin.</p>
+              <h3 className="font-semibold mb-2 group-hover:text-white" style={{ color: '#e7c873' }}>Eksploro Linjat</h3>
+              <p className="text-gray-600 group-hover:text-white">Shiko hartën e linjave dhe zgjedh rrugën më të mirë për udhëtimin.</p>
             </div>
 
             <div
-              className="bg-white p-6 rounded-lg shadow text-center cursor-pointer hover:bg-orange-50 transition"
+              className="bg-white p-6 rounded-lg shadow text-center cursor-pointer transition hover:bg-[#0a223a] hover:text-white group"
               onClick={() => onNavigate && onNavigate("bus-companies")}
             >
               <div className="text-3xl mb-3">🏢</div>
-              <h3 className="font-semibold mb-2" style={{ color: '#e7c873' }}>Zbulo Kompanitë</h3>
-              <p className="text-gray-600">Krahaso kompanitë sipas çmimeve, orareve dhe vlerësimeve.</p>
+              <h3 className="font-semibold mb-2 group-hover:text-white" style={{ color: '#e7c873' }}>Zbulo Kompanitë</h3>
+              <p className="text-gray-600 group-hover:text-white">Krahaso kompanitë sipas çmimeve, orareve dhe vlerësimeve.</p>
             </div>
           </div>
         </div>
@@ -71,7 +72,7 @@ function Home({ onNavigate }) {
               </svg>
               Ne do të verifikojmë të dhënat dhe do të dërgojmë kodin e zbritjes.
             </div>
-            <button className="bg-[#f97316] hover:bg-[#000000] text-white font-semibold rounded-full px-8 py-3 shadow transition">Na dërgo email</button>
+            <button className="bg-[#f97316] hover:bg-[#ea580c] text-white font-semibold rounded-full px-8 py-3 shadow transition">Na dërgo email</button>
           </div>
           <div className="flex-1 flex justify-center min-w-[300px]">
             {/* SVG illustration: city, bus, station */}
@@ -113,9 +114,9 @@ function Home({ onNavigate }) {
       </section>
 
       {/* POPULAR DESTINATIONS SECTION */}
-      <section className="py-16 mb-16" style={{ background: 'linear-gradient(90deg, #e7c873 0%, #fff 100%)' }}>
+      <section className="py-16 mb-16 text-white" style={{ background: 'linear-gradient(90deg, #0a223a 0%, #193a5a 100%)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800 drop-shadow">Destinacionet më të preferuara
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 drop-shadow">Destinacionet më të preferuara
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             
@@ -128,7 +129,7 @@ function Home({ onNavigate }) {
             </div>
             <div
               key={"Tirana"}
-              className="bg-white/90 rounded-xl shadow px-3 py-4 flex items-center justify-center text-base font-medium text-gray-700 hover:bg-orange-50 hover:scale-105 transition-all duration-200 border border-orange-100"
+              className="bg-white/90 rounded-xl shadow px-3 py-4 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-orange-50 hover:scale-105 transition-all duration-200 border border-orange-100"
               style={{ minHeight: 48 }}
             >
               <span className="mr-2 text-orange-500 text-lg">🚌</span> Dardania
@@ -241,32 +242,32 @@ function Home({ onNavigate }) {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-gray-800">Çmimet e Biletave</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Bileta për një drejtim */}
-            <div className="bg-[#e7c873] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
+            <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Biletë për një drejtim</div>
               <div className="text-4xl font-bold mb-4 text-white">0.50€</div>
               <div className="text-white/90 text-center mb-6">Një biletë e rregullt autobusi, e cila mund të përdoret vetëm për një drejtim.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-white text-[#f97316] rounded-lg font-medium transition">Më shumë &gt;</button>
+              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
             </div>
             {/* Bileta Ditore */}
-            <div className="bg-[#e7c873] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
+            <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Ditore</div>
               <div className="text-4xl font-bold mb-4 text-white">0.80€</div>
               <div className="text-white/90 text-center mb-6">Përfshin udhëtime vajtje-ardhje pa limit. Përdoret për të gjitha linjat e Komunës së Prishtinës.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#000000] text-white rounded-lg font-medium transition">Më shumë &gt;</button>
+              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë</button>
             </div>
             {/* Bileta Javore */}
-            <div className="bg-[#e7c873] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
+            <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Javore</div>
               <div className="text-4xl font-bold mb-4 text-white">4.00€</div>
               <div className="text-white/90 text-center mb-6">Përfshin udhëtime vajtje-ardhje pa limit. Përdoret për të gjitha linjat e Komunës së Prishtinës. Bileta Javore kushton 4.00€</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#000000] text-white rounded-lg font-medium transition">Më shumë &gt;</button>
+              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
             </div>
             {/* Bileta Mujore */}
-            <div className="bg-[#e7c873] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
+            <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Mujore</div>
               <div className="text-4xl font-bold mb-4 text-white">13.50€</div>
               <div className="text-white/90 text-center mb-6">Përdoret për të gjitha linjat e Trafikut Urban. Gjithashtu - Bileta Mujore e Linjës Mund të përdoret vetëm për një linjë të caktuar.<br/>Bileta Mujore e Linjës – Për nxënës dhe studentë është 10€.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#000000] text-white rounded-lg font-medium transition">Më shumë &gt;</button>
+              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
             </div>
           </div>
         </div>
@@ -316,6 +317,8 @@ function Home({ onNavigate }) {
     </div>
   </div>
 </section>
+      {/* Footer */}
+      <Footer />
     </div>
   );
      
