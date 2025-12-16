@@ -12,7 +12,7 @@ function Header({ onNavigate, user, onLogout }) {
  
   return (
     
-    <header className="shadow-lg" style={{ background: bgColor }}>
+    <header className="shadow-lg sticky top-0 z-50" style={{ background: bgColor }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           
@@ -69,11 +69,27 @@ function Header({ onNavigate, user, onLogout }) {
                   </button>
                 </li>
                 
+                <li>
+                  <button
+                    onClick={() => onNavigate("about")}
+                    className="text-white transition hover:text-yellow-400 font-medium"
+                  >
+                    Rreth Nesh
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate("contact")}
+                    className="text-white transition hover:text-yellow-400 font-medium"
+                  >
+                    Kontakti
+                  </button>
+                </li>
                 {user && (
                   <li>
                     <button
                       onClick={() => onNavigate("dashboard")}
-                      className={`text-${accentColor} transition hover:text-green-600 font-bold`}
+                      className="text-white transition hover:text-yellow-400 font-bold"
                     >
                       Dashboard
                     </button>

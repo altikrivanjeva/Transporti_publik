@@ -2,8 +2,11 @@ import React from "react";
 import heroImg from "../assets/bus.avif";
 import trafikUrban from "../assets/Trafik-urban.webp";
 import Footer from "./Footer";
+import LocationDropdown from "./LocationDropdown";
 
 function Home({ onNavigate }) {
+  const [nisja, setNisja] = React.useState("");
+  const [destinacioni, setDestinacioni] = React.useState("");
   return (
     <div>
       {/* HERO */}
@@ -17,10 +20,14 @@ function Home({ onNavigate }) {
 
               <div className="w-full md:w-3/4 bg-white rounded-md shadow-md p-4">
                 <div className="flex gap-3">
-                  <input className="flex-1 border rounded px-4 py-2" placeholder="Nisja" />
-                  <input className="flex-1 border rounded px-4 py-2" placeholder="Destinacioni" />
+                  <div className="flex-1">
+                    <LocationDropdown value={nisja} onChange={setNisja} placeholder="Nisja" />
+                  </div>
+                  <div className="flex-1">
+                    <LocationDropdown value={destinacioni} onChange={setDestinacioni} placeholder="Destinacioni" />
+                  </div>
                   <input type="date" className="border rounded px-4 py-2" />
-                  <button className="bg-[#f97316] hover:bg-[#ea580c] text-white px-6 py-2 rounded transition">Kërko</button>
+                  <button className="bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] px-6 py-2 rounded transition font-semibold">Kërko</button>
                 </div>
               </div>
             </div>
@@ -72,7 +79,12 @@ function Home({ onNavigate }) {
               </svg>
               Ne do të verifikojmë të dhënat dhe do të dërgojmë kodin e zbritjes.
             </div>
-            <button className="bg-[#f97316] hover:bg-[#ea580c] text-white font-semibold rounded-full px-8 py-3 shadow transition">Na dërgo email</button>
+            <button
+              className="bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] font-semibold rounded-full px-8 py-3 shadow transition"
+              onClick={() => (typeof onNavigate === 'function') && onNavigate('student-discount')}
+            >
+              Na dërgo email
+            </button>
           </div>
           <div className="flex-1 flex justify-center min-w-[300px]">
             {/* SVG illustration: city, bus, station */}
@@ -246,28 +258,28 @@ function Home({ onNavigate }) {
               <div className="text-lg font-semibold mb-2 text-white">Biletë për një drejtim</div>
               <div className="text-4xl font-bold mb-4 text-white">0.50€</div>
               <div className="text-white/90 text-center mb-6">Një biletë e rregullt autobusi, e cila mund të përdoret vetëm për një drejtim.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
+              <button className="mt-auto px-6 py-2 bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] rounded-lg font-medium transition">Më shumë </button>
             </div>
             {/* Bileta Ditore */}
             <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Ditore</div>
               <div className="text-4xl font-bold mb-4 text-white">0.80€</div>
               <div className="text-white/90 text-center mb-6">Përfshin udhëtime vajtje-ardhje pa limit. Përdoret për të gjitha linjat e Komunës së Prishtinës.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë</button>
+              <button className="mt-auto px-6 py-2 bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] rounded-lg font-medium transition">Më shumë</button>
             </div>
             {/* Bileta Javore */}
             <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Javore</div>
               <div className="text-4xl font-bold mb-4 text-white">4.00€</div>
               <div className="text-white/90 text-center mb-6">Përfshin udhëtime vajtje-ardhje pa limit. Përdoret për të gjitha linjat e Komunës së Prishtinës. Bileta Javore kushton 4.00€</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
+              <button className="mt-auto px-6 py-2 bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] rounded-lg font-medium transition">Më shumë </button>
             </div>
             {/* Bileta Mujore */}
             <div className="bg-[#0a223a] rounded-xl shadow-lg flex flex-col items-center p-8 border border-gray-100">
               <div className="text-lg font-semibold mb-2 text-white">Bileta Mujore</div>
               <div className="text-4xl font-bold mb-4 text-white">13.50€</div>
               <div className="text-white/90 text-center mb-6">Përdoret për të gjitha linjat e Trafikut Urban. Gjithashtu - Bileta Mujore e Linjës Mund të përdoret vetëm për një linjë të caktuar.<br/>Bileta Mujore e Linjës – Për nxënës dhe studentë është 10€.</div>
-              <button className="mt-auto px-6 py-2 bg-[#f97316] hover:bg-[#ea580c] text-white rounded-lg font-medium transition">Më shumë </button>
+              <button className="mt-auto px-6 py-2 bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] rounded-lg font-medium transition">Më shumë </button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
+
 import express from "express";
 import bcrypt from "bcryptjs";
 import db from "../db.js";
-
 const router = express.Router();
 
 // 🟢 Register

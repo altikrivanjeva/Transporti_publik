@@ -6,6 +6,9 @@ import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import PublicCompanies from "./components/PublicCompanies";
 import CompanyPage from "./components/CompanyPage";
+import ContactForm from "./components/ContactForm";
+import StudentDiscountForm from "./components/StudentDiscountForm";
+import ContactInfo from "./components/ContactInfo";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -54,6 +57,7 @@ function App() {
               setSelectedCompany(company);
               setPage("company");
             }}
+            onNavigate={setPage}
           />
         )}
 
@@ -68,7 +72,11 @@ function App() {
 
         {/* Faqet e tjera (mund t’i shtosh me vonë) */}
         {page === "lines" && <p className="text-center text-lg mt-20">Faqja e linjave</p>}
-        {page === "contact" && <p className="text-center text-lg mt-20">Faqja e kontaktit</p>}
+        {page === "contact" && <>
+          <ContactInfo />
+          <ContactForm />
+        </>}
+        {page === "student-discount" && <StudentDiscountForm />}
       </div>
     </div>
   );
