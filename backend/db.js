@@ -1,16 +1,9 @@
-import mysql from "mysql2";
+import { Sequelize } from "sequelize";
 
-
-const db = mysql.createConnection({
+const sequelize = new Sequelize("transporti_publik", "root", "", {
   host: "localhost",
-  user: "root",
-  password: "",
-  database: "transporti_publik",
+  dialect: "mysql",
+  logging: false, // Set to true to see SQL queries in console
 });
 
-db.connect((err) => {
-  if (err) console.error("Gabim në lidhjen me MySQL:", err);
-  else console.log("Lidhja me MySQL u krye me sukses!");
-});
-
-export default db;
+export default sequelize;

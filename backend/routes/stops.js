@@ -1,42 +1,59 @@
 import express from "express";
-import db from "../db.js";
+import { Stop } from "../models/index.js";
 
 const router = express.Router();
 
 // Merr të gjitha stacionet
-router.get("/", (req, res) => {
-  db.query("SELECT * FROM stops", (err, result) => {
-    if (err) return res.status(500).json(err);
-    res.json(result);
-  });
+router.get("/", async (req, res) => {
+  try {
+    const stops = await Stop.findAll();
+    res.json(stops);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Shto një stacion
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { name } = req.body;
-  db.query("INSERT INTO stops (name) VALUES (?)", [name], (err, result) => {
-    if (err) return res.status(500).json(err);
-    res.json({ id: result.insertId, name });
-  });
+  try {
+    const newStop = await Stop.create({ name });
+    res.json(newStop);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Edit një stacion
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
-  db.query("UPDATE stops SET name = ? WHERE id = ?", [name, id], (err) => {
-    if (err) return res.status(500).json(err);
-    res.json({ id, name });
-  });
+  try {
+    const [updated] = await Stop.update({ name }, { where: { id } });
+    if (updated) {
+      const updatedStop = await Stop.findByPk(id);
+      res.json(updatedStop);
+    } else {
+      res.status(500).json({ message: "Gabim" }); // Keeping consistent with previous generic error
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Fshi një stacion
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  db.query("DELETE FROM stops WHERE id = ?", [id], (err) => {
-    if (err) return res.status(500).json(err);
-    res.json({ message: "Stacioni u fshi me sukses" });
-  });
+  try {
+    const deleted = await Stop.destroy({ where: { id } });
+    if (deleted) {
+      res.json({ message: "Stacioni u fshi me sukses" });
+    } else {
+      res.status(500).json({ message: "Gabim" });
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 export default router;

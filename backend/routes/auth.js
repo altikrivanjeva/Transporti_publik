@@ -1,53 +1,53 @@
-
 import express from "express";
 import bcrypt from "bcryptjs";
-import db from "../db.js";
+import { User } from "../models/index.js";
 const router = express.Router();
 
 // 🟢 Register
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
     return res.status(400).json({ message: "Plotëso të gjitha fushat!" });
   }
 
-  // kontrollo nëse ekziston
-  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
-    if (err) return res.status(500).json({ message: "Gabim në server!" });
-    if (result.length > 0)
+  try {
+    // kontrollo nëse ekziston
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
       return res.status(400).json({ message: "Ky email ekziston!" });
+    }
 
     // krijo hash për password
     const hash = bcrypt.hashSync(password, 10);
 
-    db.query(
-      "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
-      [username, email, hash],
-      (err2) => {
-        if (err2)
-          return res.status(500).json({ message: "Gabim gjatë regjistrimit!" });
+    await User.create({
+      username,
+      email,
+      password_hash: hash,
+    });
 
-        return res.json({ message: "U regjistrua me sukses!" });
-      }
-    );
-  });
+    return res.json({ message: "U regjistrua me sukses!" });
+  } catch (err) {
+    console.error("Register Error:", err);
+    return res.status(500).json({ message: "Gabim gjatë regjistrimit!" });
+  }
 });
 
 // 🟠 Login
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password)
     return res.status(400).json({ message: "Plotëso të gjitha fushat!" });
 
-  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
-    if (err) return res.status(500).json({ message: "Gabim në server!" });
+  try {
+    const user = await User.findOne({ where: { email } });
 
-    if (result.length === 0)
+    if (!user) {
       return res.status(401).json({ message: "Email ose fjalëkalim i pasaktë!" });
+    }
 
-    const user = result[0];
     const isPasswordValid = bcrypt.compareSync(password, user.password_hash);
 
     if (!isPasswordValid)
@@ -57,7 +57,10 @@ router.post("/login", (req, res) => {
       message: "Hyrja u krye me sukses!",
       user: { id: user.id, username: user.username, email: user.email },
     });
-  });
+  } catch (err) {
+    console.error("Login Error:", err);
+    return res.status(500).json({ message: "Gabim në server!" });
+  }
 });
 
 export default router;
