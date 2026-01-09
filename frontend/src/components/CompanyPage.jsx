@@ -104,8 +104,8 @@ export default function CompanyPage({ company, onBack }) {
     <>
     <div>
       <div className="flex items-center justify-between mb-6">
-        <button onClick={onBack} className="text-sm text-blue-600 hover:underline">← Kthehu tek kompanitë</button>
-        <h1 className="text-2xl font-bold">{company.name}</h1>
+        <button onClick={onBack} className="text-sm text-white hover:underline">← Kthehu tek kompanitë</button>
+        <h1 className="text-2xl font-bold text-white">{company.name}</h1>
         <div />
       </div>
 
