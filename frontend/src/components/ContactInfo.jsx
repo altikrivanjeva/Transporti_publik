@@ -10,7 +10,7 @@ export default function ContactInfo() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto text-center mb-8">
-        <h2 className="text-3xl font-bold mb-4">Informatat për kontakt me<br/>N.P.K. ``Transporti Publik`` Sh.A.</h2>
+        <h2 className="text-3xl font-bold mb-4 text-white">Informatat për kontakt me<br/>N.P.K. ``Transporti Publik`` Sh.A.</h2>
       </div>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div className="bg-white rounded shadow p-8 flex flex-col items-center border-b-4 border-[#e7c873]">
