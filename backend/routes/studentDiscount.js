@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import db from "../db.js";
+import { StudentDiscount } from "../models/index.js";
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.post('/', upload.single('file'), (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
   const { name, email } = req.body;
   const file_path = req.file ? (req.file.path.replace(/\\/g, '/').replace(/^.*uploads\//, 'uploads/')) : null;
 
@@ -27,18 +27,14 @@ router.post('/', upload.single('file'), (req, res) => {
     return res.status(400).json({ message: 'Të gjitha fushat janë të detyrueshme.' });
   }
 
-  db.query(
-    'INSERT INTO student_discounts (name, email, file_path) VALUES (?, ?, ?)',
-    [name, email, file_path],
-    (err, result) => {
-      if (err) {
-        console.error("DB ERROR:", err, { name, email, file_path });
-        return res.status(500).json({ message: 'Gabim gjatë ruajtjes në databazë.' });
-      }
-      console.log('INSERT U KRYE ME SUKSES:', result);
-      res.json({ message: 'Aplikimi u ruajt me sukses!' });
-    }
-  );
+  try {
+    const newRecord = await StudentDiscount.create({ name, email, file_path });
+    console.log('INSERT U KRYE ME SUKSES:', newRecord);
+    res.json({ message: 'Aplikimi u ruajt me sukses!' });
+  } catch (err) {
+    console.error("DB ERROR:", err, { name, email, file_path });
+    res.status(500).json({ message: 'Gabim gjatë ruajtjes në databazë.' });
+  }
 });
 
 export default router;
