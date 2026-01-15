@@ -9,6 +9,7 @@ import CompanyPage from "./components/CompanyPage";
 import ContactForm from "./components/ContactForm";
 import StudentDiscountForm from "./components/StudentDiscountForm";
 import ContactInfo from "./components/ContactInfo";
+import Linjat from "./components/Linjat"; // heqim .jsx nga import
 
 function App() {
   const [page, setPage] = useState("login");
@@ -71,7 +72,7 @@ function App() {
         {!user && page === "register" && <Register />}
 
         {/* Faqet e tjera (mund t’i shtosh me vonë) */}
-        {page === "lines" && <p className="text-center text-lg mt-20">Faqja e linjave</p>}
+        {page === "lines" && <Linjat />} {/* këtu e vendosim komponentin Linjat */}
         {page === "contact" && <>
           <ContactInfo />
           <ContactForm />
