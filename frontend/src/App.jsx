@@ -9,7 +9,9 @@ import CompanyPage from "./components/CompanyPage";
 import ContactForm from "./components/ContactForm";
 import StudentDiscountForm from "./components/StudentDiscountForm";
 import ContactInfo from "./components/ContactInfo";
-import Linjat from "./components/Linjat"; // heqim .jsx nga import
+import Linjat from "./components/Linjat";
+import About from "./components/About";
+import Footer from "./components/Footer";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -44,12 +46,15 @@ function App() {
       {/* Header merr user + onLogout + onNavigate */}
       <Header onNavigate={setPage} user={user} onLogout={handleLogout} />
 
-      <div className="max-w-6xl mx-auto mt-10 px-6">
+      <div className="max-w-6xl mx-auto mt-10 px-6 min-h-[calc(100vh-340px)]">
         {/* Nëse user është loguar → Dashboard */}
         {user && page === "dashboard" && <Dashboard onLogout={handleLogout} />}
 
         {/* Home page */}
         {page === "home" && <Home onNavigate={setPage} />}
+
+        {/* About page */}
+        {page === "about" && <About />}
 
         {/* Publike: lista e kompanive */}
         {page === "bus-companies" && (
@@ -72,13 +77,16 @@ function App() {
         {!user && page === "register" && <Register />}
 
         {/* Faqet e tjera (mund t’i shtosh me vonë) */}
-        {page === "lines" && <Linjat />} {/* këtu e vendosim komponentin Linjat */}
+        {page === "lines" && <Linjat />}
         {page === "contact" && <>
           <ContactInfo />
           <ContactForm />
         </>}
         {page === "student-discount" && <StudentDiscountForm />}
       </div>
+
+      {/* Footer jashtë container-it për full width */}
+      <Footer onNavigate={setPage} />
     </div>
   );
 }

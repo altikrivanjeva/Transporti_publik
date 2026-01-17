@@ -16,6 +16,10 @@ router.get("/", async (req, res) => {
 // Shto një stacion
 router.post("/", async (req, res) => {
   const { name } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ message: "Emri i stacionit është i detyrueshëm" });
+  }
+
   try {
     const newStop = await Stop.create({ name });
     res.json(newStop);
@@ -28,6 +32,10 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ message: "Emri i stacionit është i detyrueshëm" });
+  }
+
   try {
     const [updated] = await Stop.update({ name }, { where: { id } });
     if (updated) {

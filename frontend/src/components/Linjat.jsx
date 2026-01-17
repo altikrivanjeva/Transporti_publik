@@ -85,7 +85,7 @@ export default function Linjat() {
         return;
       }
 
-      setSuccessMsg("🎉 Bileta u përditësua me sukses!");
+      setSuccessMsg("Bileta u përditësua me sukses!");
       const updatedTicket = { ...lastTicket, ...form, price: Number(price) };
       setLastTicket(updatedTicket);
       localStorage.setItem("savedTicket", JSON.stringify(updatedTicket));
@@ -112,7 +112,7 @@ export default function Linjat() {
         return;
       }
 
-      setSuccessMsg("🎉 Bileta u ble me sukses!");
+      setSuccessMsg("Bileta u ble me sukses!");
       setLastTicket(data);
       localStorage.setItem("savedTicket", JSON.stringify(data));
 

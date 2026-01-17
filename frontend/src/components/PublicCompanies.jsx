@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
+
 
 
 export default function PublicCompanies({ onOpenCompany, onNavigate }) {
@@ -59,8 +59,8 @@ export default function PublicCompanies({ onOpenCompany, onNavigate }) {
             {filtered.map((c) => (
               <div key={c.id} className="border rounded-lg p-4 shadow-sm bg-white flex flex-col items-center">
                 {/* Logo ose placeholder */}
-                <div className="h-16 w-16 mb-3 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden text-4xl">
-                  🚌
+                <div className="h-16 w-16 mb-3 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden text-[#0a223a]">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 17h2l.64-2.54c.24-.959.24-1.962 0-2.92l-1.07-4.27A3 3 0 0 0 17.66 5H4.34a3 3 0 0 0-2.9 2.27l-1.07 4.27c-.24.959-.24 1.962 0 2.92L1 17h2"></path><path d="M14 17H9"></path><path d="M8 21h8"></path><path d="M5 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4"></path><path d="M19 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4"></path></svg>
                 </div>
                 <h2 className="text-xl font-semibold mb-2">{c.name}</h2>
                 <p className="text-sm text-gray-600">Telefon: {c.phone || "-"}</p>
@@ -78,7 +78,7 @@ export default function PublicCompanies({ onOpenCompany, onNavigate }) {
           </div>
         )}
       </div>
-      <Footer onNavigate={onNavigate} />
+
     </>
   );
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import ClientLinjat from "../models/ClientLinjat.js";
+import { ClientLinjat } from "../models/index.js";
 
 const router = express.Router();
 
