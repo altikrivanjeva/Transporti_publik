@@ -5,6 +5,7 @@ import Ticket from "./Ticket.js";
 import Stop from "./Stop.js";
 import Contact from "./Contact.js";
 import StudentDiscount from "./StudentDiscount.js";
+import ClientLinjat from "./ClientLinjat.js";
 
 // Define Associations
 Ticket.belongsTo(Company, { foreignKey: 'company_id' });
@@ -20,5 +21,6 @@ export {
     Ticket,
     Stop,
     Contact,
-    StudentDiscount
+    StudentDiscount,
+    ClientLinjat
 };
