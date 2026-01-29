@@ -28,6 +28,15 @@ function Register() {
         password,
       });
       setMessage(res.data.message);
+
+      // Nëse duam që përdoruesi të logohet automatikisht pas regjistrimit:
+      if (res.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
+        // Mund të shtohet një redirect këtu ose të njoftohet App.jsx
+      }
+
       setUsername("");
       setEmail("");
       setPassword("");
@@ -42,7 +51,7 @@ function Register() {
     <div className="flex justify-center mt-10">
       <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">
-        Regjistrohu
+          Regjistrohu
         </h1>
 
         <form onSubmit={handleRegister} className="space-y-4">
@@ -80,15 +89,14 @@ function Register() {
             Regjistrohu
           </button>
 
-            
-            <a href="/login" className="text-teal-500 hover:underline ml ">Already have an account</a>
+
+          <a href="/login" className="text-teal-500 hover:underline ml ">Already have an account</a>
 
         </form>
 
         {message && (
-          <p className={`text-center mt-4 font-medium ${
-            message.includes("sukses") ? "text-green-600" : "text-red-600"
-          }`}>
+          <p className={`text-center mt-4 font-medium ${message.includes("sukses") ? "text-green-600" : "text-red-600"
+            }`}>
             {message}
           </p>
         )}

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import API from "../api";
 
 import linja1a from "../assets/linja1a.jpg";
 import linja3c from "../assets/linja3c.jpg";
 import linja7c from "../assets/linja7c.jpg";
-
-const API = "http://localhost:5001/linjat";
 
 const images = [
   { src: linja1a, name: "Linja1a" },
@@ -69,70 +68,63 @@ export default function Linjat() {
 
     if (isEditing && lastTicket) {
       // UPDATE LOGIC
-      const res = await fetch(API + "/" + lastTicket.id, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      try {
+        const res = await API.put(`/linjat/${lastTicket.id}`, {
           ...form,
           price: Number(price)
-        })
-      });
+        });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert("Gabim: " + data.message);
+        setSuccessMsg("Bileta u përditësua me sukses!");
+        const updatedTicket = { ...lastTicket, ...form, price: Number(price) };
+        setLastTicket(updatedTicket);
+        localStorage.setItem("savedTicket", JSON.stringify(updatedTicket));
+        // Reset after update
+        setIsEditing(false);
+        setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
+        setCanDecrease(false);
+      } catch (err) {
+        alert("Gabim gjatë përditësimit: " + (err.response?.data?.message || err.message));
         return;
       }
-
-      setSuccessMsg("Bileta u përditësua me sukses!");
-      const updatedTicket = { ...lastTicket, ...form, price: Number(price) };
-      setLastTicket(updatedTicket);
-      localStorage.setItem("savedTicket", JSON.stringify(updatedTicket));
-      // Reset after update
-      setIsEditing(false);
-      setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
-      setCanDecrease(false);
-
     } else {
       // CREATE LOGIC
-      const res = await fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      try {
+        const res = await API.post("/linjat", {
           ...form,
           price: Number(price)
-        })
-      });
+        });
 
-      const data = await res.json();
+        const data = res.data;
 
-      if (!res.ok) {
-        alert("Gabim: " + data.message);
+        setSuccessMsg("Bileta u ble me sukses!");
+        setLastTicket(data);
+        localStorage.setItem("savedTicket", JSON.stringify(data));
+
+        // reset
+        setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
+        setCanDecrease(false);
+      } catch (err) {
+        alert("Gabim gjatë krijimit: " + (err.response?.data?.message || err.message));
         return;
       }
-
-      setSuccessMsg("Bileta u ble me sukses!");
-      setLastTicket(data);
-      localStorage.setItem("savedTicket", JSON.stringify(data));
-
-      // reset
-      setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
-      setCanDecrease(false);
     }
   };
 
   const handleDelete = async () => {
     if (!lastTicket) return;
 
-    await fetch(API + "/" + lastTicket.id, { method: "DELETE" });
+    try {
+      await API.delete(`/linjat/${lastTicket.id}`);
 
-    setLastTicket(null);
-    localStorage.removeItem("savedTicket");
-    setSuccessMsg("Bileta u fshi me sukses!");
-    // Harroje modin e editimit nese fshihet bileta
-    setIsEditing(false);
-    setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
+      setLastTicket(null);
+      localStorage.removeItem("savedTicket");
+      setSuccessMsg("Bileta u fshi me sukses!");
+      // Harroje modin e editimit nese fshihet bileta
+      setIsEditing(false);
+      setForm({ emri: "", mbiemri: "", linja: "Linja1a", stops: 0, email: "" });
+    } catch (err) {
+      alert("Gabim gjatë fshirjes!");
+    }
   };
 
   const handleUpdate = () => {

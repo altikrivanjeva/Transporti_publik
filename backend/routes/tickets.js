@@ -1,10 +1,11 @@
 import express from "express";
 import { Ticket } from "../models/index.js";
+import { authenticateToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
 // GET /tickets?companyId=...&userId=...
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   const { companyId, userId } = req.query;
   const where = {};
 
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
 });
 
 // POST /tickets
-router.post("/", async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   const { company_id, user_id, passenger_name, seat, travel_date, price } = req.body;
   if (!company_id || !passenger_name || !travel_date) {
     return res.status(400).json({ message: "company_id, passenger_name dhe travel_date janë të detyrueshme" });
@@ -42,7 +43,7 @@ router.post("/", async (req, res) => {
 });
 
 // PUT /tickets/:id
-router.put("/:id", async (req, res) => {
+router.put("/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
   const { passenger_name, seat, travel_date, price } = req.body;
 
@@ -68,7 +69,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /tickets/:id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
   try {
     const deleted = await Ticket.destroy({ where: { id } });

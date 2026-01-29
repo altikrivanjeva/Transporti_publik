@@ -15,8 +15,10 @@ function Login({ onLogin }) {
       });
       setMessage(res.data.message);
 
-      // ✅ ruaj userin në localStorage
+      // ✅ ruaj të dhënat në localStorage
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
 
       // ✅ thirr funksionin për të kaluar në dashboard
       onLogin(res.data.user);

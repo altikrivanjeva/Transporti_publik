@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../api";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -13,7 +13,7 @@ function Users() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("http://localhost:5001/users");
+      const res = await API.get("/users");
       setUsers(res.data);
     } catch (err) {
       console.error("❌ Gabim gjatë marrjes së userave:", err);
@@ -31,7 +31,7 @@ function Users() {
   const deleteUser = async (id) => {
     if (window.confirm("A je i sigurt që dëshiron ta fshish këtë user?")) {
       try {
-        await axios.delete(`http://localhost:5001/users/${id}`);
+        await API.delete(`/users/${id}`);
         // përditëso lokalisht pa rifreskuar
         setUsers((prev) => prev.filter((u) => u.id !== id));
       } catch (err) {
@@ -47,7 +47,7 @@ function Users() {
     }
 
     try {
-      const res = await axios.put(`http://localhost:5001/users/${id}`, {
+      const res = await API.put(`/users/${id}`, {
         username: editData.username,
         email: editData.email,
       });
