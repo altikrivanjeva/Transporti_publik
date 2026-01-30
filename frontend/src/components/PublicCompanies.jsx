@@ -65,14 +65,7 @@ export default function PublicCompanies({ onOpenCompany, onNavigate }) {
                 <h2 className="text-xl font-semibold mb-2">{c.name}</h2>
                 <p className="text-sm text-gray-600">Telefon: {c.phone || "-"}</p>
                 <p className="text-sm text-gray-600">Email: {c.email || "-"}</p>
-                <div className="mt-4 flex gap-2">
-                  <button
-                    onClick={() => onOpenCompany && onOpenCompany(c)}
-                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-                  >
-                    Shiko
-                  </button>
-                </div>
+                {/* Butoni 'Shiko' u hoq */}
               </div>
             ))}
           </div>

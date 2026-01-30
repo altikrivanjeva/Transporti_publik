@@ -17,19 +17,7 @@ function Home({ onNavigate }) {
             <div className="relative z-10 flex flex-col items-start justify-center h-full p-8">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Udhëto Qytetin me Lehtësi!</h1>
               <p className="text-white/90 mb-6 max-w-xl">Gjej stacionet, shiko linjat dhe zgjidh kompaninë më të përshtatshme për udhëtimin tënd.</p>
-
-              <div className="w-full md:w-3/4 bg-white rounded-md shadow-md p-4">
-                <div className="flex gap-3">
-                  <div className="flex-1">
-                    <LocationDropdown value={nisja} onChange={setNisja} placeholder="Nisja" />
-                  </div>
-                  <div className="flex-1">
-                    <LocationDropdown value={destinacioni} onChange={setDestinacioni} placeholder="Destinacioni" />
-                  </div>
-                  <input type="date" className="border rounded px-4 py-2" />
-                  <button className="bg-[#e7c873] hover:bg-[#d6b24c] text-[#0a223a] px-6 py-2 rounded transition font-semibold">Kërko</button>
-                </div>
-              </div>
+              {/* U largua forma e filtrave, mbetet vetëm fotoja dhe tekstet */}
             </div>
           </div>
         </div>
