@@ -144,7 +144,14 @@ export default function Linjat() {
   };
 
   return (
-    <>
+    <div className="mb-10">
+      <div className="bg-[#fdfaf3] py-12 mb-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl font-bold mb-2">Linjat</h1>
+           <div className="text-[#0a223a] mb-2">Transporti Publik &gt; Bli Bilete</div>
+        </div>
+      </div>
+
       <div className="grid md:grid-cols-2 gap-10 p-8 max-w-7xl mx-auto">
         {/* FORM */}
         <form onSubmit={handleSubmit} className={`bg-white shadow-xl p-6 rounded-xl space-y-4 ${isEditing ? "border-2 border-yellow-400" : ""}`}>
@@ -355,6 +362,6 @@ export default function Linjat() {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
