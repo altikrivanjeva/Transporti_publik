@@ -10,7 +10,7 @@ import ticketsRoutes from "./routes/tickets.js";
 import studentDiscountRouter from "./routes/studentDiscount.js";
 import contactRouter from "./routes/contact.js";
 import linjatRoutes from "./routes/linjat.js";
-// import clientsRoutes from "./routes/clients.js";
+// i importon routat e krijuara per me i perdor ne server
 
 const app = express();
 
