@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/index.js";
 
-// Helper for generating tokens
+// Funksionet për gjenerimin e tokenave
 const generateAccessToken = (user) => {
     return jwt.sign(
         { id: user.id, username: user.username, email: user.email, role: user.role },

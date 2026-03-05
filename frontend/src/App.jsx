@@ -28,7 +28,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(null);
 
-  // ✅ Lexo user nga localStorage në fillim
+  //  Lexo user nga localStorage në fillim
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
