@@ -29,6 +29,7 @@ function Companies() {
   };
 
   const handleAdd = async () => {
+    // Kontrollet fillestare
     if (!newName.trim()) {
       alert("Plotëso emrin!");
       return;
@@ -38,33 +39,33 @@ function Companies() {
       return;
     }
 
-    // pas trim checks për name
     const phoneClean = String(newPhone).trim();
-    // lejo formatin: opcional + në fillim, pastaj 7-15 shifra
     const phoneRegex = /^\+?\d{7,15}$/;
-    if (!phoneRegex.test(phoneClean)) {
-      return (
-        <>
-          <div>
-            <div className="max-w-5xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
-              <h1 className="text-2xl font-bold mb-6 text-center">Kompanitë e Autobusëve</h1>
-              <div className="mb-6 flex flex-col md:flex-row gap-4 md:items-end">
-                {/* ...existing code... */}
-              </div>
-              <table className="w-full border mt-4">
-                {/* ...existing code... */}
-              </table>
-            </div>
 
-            {companies.length === 0 && (
-              <p className="text-center text-gray-500 mt-6">
-                Nuk ka kompanitë. Shto një të re!
-              </p>
-            )}
-          </div>
-          <Footer />
-        </>
-      );
+    if (!phoneRegex.test(phoneClean)) {
+      alert("Numri i telefonit nuk është valid! Duhet të ketë 7-15 shifra.");
+      return;
+    }
+
+    try {
+      // THIRRJA E API PËR SHTIM
+      const res = await axios.post(API_URL, {
+        name: newName,
+        phone: phoneClean,
+        email: newEmail,
+      });
+
+      // Përditëso state-in me kompaninë e re
+      setCompanies([...companies, res.data]);
+
+      // Pastro fushat e inputit
+      setNewName("");
+      setNewPhone("");
+      setNewEmail("");
+
+      alert("Kompania u shtua me sukses!");
+    } catch (err) {
+      console.error("handleAdd error:", err);
       alert(err.response?.data?.message || "Gabim gjatë shtimit!");
     }
   };
@@ -108,8 +109,8 @@ function Companies() {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6"> Kompanitë e Autobusëve</h2>
+    <div className="max-w-5xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
+      <h2 className="text-2xl font-bold mb-6 text-center"> Kompanitë e Autobusëve</h2>
 
       {/* ➕ FORMA PËR SHTIM */}
       <div className="mb-8 p-6 bg-blue-50 rounded-lg">
@@ -127,16 +128,12 @@ function Companies() {
             placeholder="Telefoni"
             value={newPhone}
             onChange={(e) => {
-              // lejo + vetëm në fillim, hiq çdo gjë tjetër që nuk është shifër ose +
               let v = e.target.value;
-              // heq karakteret të gjitha përveç shifrave dhe +
               v = v.replace(/[^\d+]/g, "");
-              // nëse ka + më shumë se një, lë vetëm të parin
               if ((v.match(/\+/g) || []).length > 1) {
                 v = v.replace(/\+/g, "");
                 v = "+" + v;
               }
-              // siguro që + mund të jetë vetëm në fillim
               if (v.indexOf("+") > 0) v = v.replace(/\+/g, "");
               setNewPhone(v);
             }}
@@ -253,8 +250,10 @@ function Companies() {
           Nuk ka kompanitë. Shto një të re!
         </p>
       )}
+      
     </div>
   );
+  <Footer />
 }
 
 export default Companies;
