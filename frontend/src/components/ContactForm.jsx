@@ -35,6 +35,7 @@ export default function ContactForm() {
     if (Object.keys(newErrors).length > 0) return;
     setSending(true);
     try {
+      // Dërgo të dhënat në backend
       const res = await fetch('http://localhost:5001/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
