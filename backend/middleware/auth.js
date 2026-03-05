@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+//verifikon tokenin dhe e vendos userin ne req.user, pastaj e therras next() per te vazhduar me radhitjen e middlewareve ose route handler
 export const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];

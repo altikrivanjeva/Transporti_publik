@@ -1,16 +1,47 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Transporti Publik - React Frontend
 
-Currently, two official plugins are available:
+Ky projekt është pjesë e sistemit për menaxhimin e transportit publik. Frontendi është ndërtuar me ReactJS dhe TailwindCSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalimi dhe Nisja
 
-## React Compiler
+1. Instalo varësitë:
+	```bash
+	npm install
+	```
+2. Starto aplikacionin:
+	```bash
+	npm run dev
+	```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Përdorimi
 
-## Expanding the ESLint configuration
+Aplikacioni mundëson:
+- Regjistrimin dhe kyçjen e përdoruesve
+- Shikimin e linjave të autobusëve
+- Menaxhimin e kompanive, ndalesave, biletave, zbritjeve për studentë
+- Dashboard për administrim
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## API (Backend)
+
+Backend-i është ndërtuar me Node.js dhe mundëson operacione CRUD për entitetet kryesore:
+
+- **/api/auth**: Regjistrim, kyçje, autentifikim (JWT)
+- **/api/linjat**: Menaxhimi i linjave të autobusëve
+- **/api/companies**: Menaxhimi i kompanive
+- **/api/stops**: Menaxhimi i ndalesave
+- **/api/tickets**: Menaxhimi i biletave
+- **/api/studentDiscount**: Menaxhimi i zbritjeve për studentë
+
+Shembull kërkese për marrjen e linjave:
+```http
+GET /api/linjat
+```
+
+## Siguria
+
+Përdoret JWT për autentifikim. Endpoint-et e mbrojtura kërkojnë token.
+
+## Dokumentacioni
+
+Për më shumë detaje, shiko kodin në folderin backend/ dhe frontend/src/components/.

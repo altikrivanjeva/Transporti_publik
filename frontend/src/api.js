@@ -4,9 +4,10 @@ const API = axios.create({
     baseURL: "http://localhost:5001",
 });
 
-// Add a request interceptor to attach the access token
+//mer tokenin nga local storage, pak ma nalt e lidhim frontend me backend
 API.interceptors.request.use(
     (config) => {
+        
         const token = localStorage.getItem("accessToken");
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
@@ -25,6 +26,7 @@ API.interceptors.response.use(
         // If error is 403 (Forbidden/Expired) and we haven't retried yet
         if (error.response?.status === 403 && !originalRequest._retry) {
             originalRequest._retry = true;
+            // Përdor refresh token për të marrë një access token të ri kur skadon
             const refreshToken = localStorage.getItem("refreshToken");
 
             if (refreshToken) {
@@ -34,6 +36,7 @@ API.interceptors.response.use(
                     });
 
                     const newAccessToken = res.data.accessToken;
+                    //e ruan tokenin ne local storage
                     localStorage.setItem("accessToken", newAccessToken);
 
                     // Update the original request with the new token
