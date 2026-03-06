@@ -31,51 +31,51 @@ app.use(cors({
 app.use(express.json());
 
 // --- LIGJERUESIT ---
-app.get('/ligjeruesit', (req, res) => {
-    db.query('SELECT * FROM Ligjëruesi', (err, result) => {
+app.get('/aeroporti', (req, res) => {
+    db.query('SELECT * FROM Aeroporti', (err, result) => {
         if (err) return res.status(500).send(err);
         res.send(result);
     });
 });
 
-app.post('/ligjeruesit', (req, res) => {
-    const { LecturerName, Department, Email } = req.body;
-    db.query('INSERT INTO Ligjëruesi (LecturerName, Department, Email) VALUES (?, ?, ?)',
-        [LecturerName, Department, Email], (err, result) => {
+app.post('/aeroporti', (req, res) => {
+    const { EmriAeroportit, Qyteti } = req.body;
+    db.query('INSERT INTO Aeroporti (EmriAeroportit, Qyteti) VALUES (?, ?)',
+        [EmriAeroportit, Qyteti], (err, result) => {
             if (err) return res.status(500).send(err);
             res.send(result);
         });
 });
 
-app.put('/ligjeruesit/:id', (req, res) => {
-    const { LecturerName, Department, Email } = req.body;
-    db.query('UPDATE Ligjëruesi SET LecturerName=?, Department=?, Email=? WHERE LecturerID=?',
-        [LecturerName, Department, Email, req.params.id], (err, result) => {
+app.put('/aeroporti/:id', (req, res) => {
+    const { EmriAeroportit, Qyteti } = req.body;
+    db.query('UPDATE Aeroporti SET EmriAeroportit=?, Qyteti=? WHERE AeroportiID=?',
+        [EmriAeroportit, Qyteti, req.params.id], (err, result) => {
             if (err) return res.status(500).send(err);
             res.send(result);
         });
 });
 
 // --- LIGJERATAT ---
-app.get('/ligjeratat', (req, res) => {
-    db.query('SELECT Ligjërata.*, Ligjëruesi.LecturerName FROM Ligjërata JOIN Ligjëruesi ON Ligjërata.LecturerID = Ligjëruesi.LecturerID',
+app.get('/fluturimi', (req, res) => {
+    db.query('SELECT Fluturimi.*, Aeroporti.EmriAeroportit FROM Fluturimi JOIN Aeroporti ON Fluturimi.AeroportiID = Aeroporti.AeroportiID',
         (err, result) => {
             if (err) return res.status(500).send(err);
             res.send(result);
         });
 });
 
-app.post('/ligjeratat', (req, res) => {
-    const { LectureName, LecturerID } = req.body;
-    db.query('INSERT INTO Ligjërata (LectureName, LecturerID) VALUES (?, ?)',
-        [LectureName, LecturerID], (err, result) => {
+app.post('/fluturimi', (req, res) => {
+    const { NrFluturimit, Destinacionet, AeroportiID } = req.body;
+    db.query('INSERT INTO Fluturimi (NrFluturimit, Destinacionet, AeroportiID) VALUES (?, ?, ?)',
+        [NrFluturimit, Destinacionet, AeroportiID], (err, result) => {
             if (err) return res.status(500).send(err);
             res.send(result);
         });
 });
 
-app.delete('/ligjeratat/:id', (req, res) => {
-    db.query('DELETE FROM Ligjërata WHERE LectureID = ?', [req.params.id], (err, result) => {
+app.delete('/fluturimi/:id', (req, res) => {
+    db.query('DELETE FROM Fluturimi WHERE FluturimiID = ?', [req.params.id], (err, result) => {
         if (err) return res.status(500).send(err);
         res.send(result);
     });
