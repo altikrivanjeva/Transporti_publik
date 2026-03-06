@@ -105,3 +105,19 @@ const Menaxhimi = () => {
 };
 
 export default Menaxhimi;
+
+
+
+// CREATE TABLE Ligjeruesi (
+//     LecturerID INT PRIMARY KEY AUTO_INCREMENT,
+//     LecturerName VARCHAR(255) NOT NULL,
+//     Department VARCHAR(255),
+//     Email VARCHAR(255)
+// );
+
+// CREATE TABLE Ligjerata (
+//     LectureID INT PRIMARY KEY AUTO_INCREMENT,
+//     LectureName VARCHAR(255) NOT NULL,
+//     LecturerID INT,
+//     FOREIGN KEY (LecturerID) REFERENCES Ligjeruesi(LecturerID) ON DELETE CASCADE
+// );	
