@@ -1,21 +1,12 @@
 import React from "react";
 
-
-
-
 function Header({ onNavigate, user, onLogout }) {
-
   const bgColor = '#0a223a';
-  const textColor = 'gray-100';
-  const hoverColor = 'yellow-400';
-  const accentColor = 'yellow-400';
 
   return (
-
     <header className="shadow-lg sticky top-0 z-50" style={{ background: bgColor }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-
 
           <div className="md:flex md:items-center md:gap-4">
             <a
@@ -33,17 +24,12 @@ function Header({ onNavigate, user, onLogout }) {
                   <circle cx="24.5" cy="25.5" r="1.5" fill="#e7c873" />
                 </svg>
               </span>
-
             </a>
           </div>
-
 
           <div className="hidden md:block">
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-base ">
-
-
-
                 <li>
                   <button
                     onClick={() => onNavigate("lines")}
@@ -78,20 +64,32 @@ function Header({ onNavigate, user, onLogout }) {
                     Kontakti
                   </button>
                 </li>
+
+                {/* --- SEKSIONI I RI --- */}
                 {user && (
-                  <li>
-                    <button
-                      onClick={() => onNavigate("dashboard")}
-                      className="text-white transition hover:text-yellow-400 font-bold"
-                    >
-                      Dashboard
-                    </button>
-                  </li>
+                  <>
+                    <li>
+                      <button
+                        onClick={() => onNavigate("menaxhimi")}
+                        className="text-yellow-400 transition hover:text-white font-bold border border-yellow-400 px-3 py-1 rounded"
+                      >
+                        Menaxhimi
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => onNavigate("dashboard")}
+                        className="text-white transition hover:text-yellow-400 font-bold"
+                      >
+                        Dashboard
+                      </button>
+                    </li>
+                  </>
                 )}
+                {/* -------------------- */}
               </ul>
             </nav>
           </div>
-
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
@@ -114,7 +112,6 @@ function Header({ onNavigate, user, onLogout }) {
               ) : (
                 <button
                   onClick={() => {
-                    localStorage.removeItem("user");
                     onLogout();
                   }}
                   className={`rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-700 transition-colors shadow-md`}
@@ -123,7 +120,6 @@ function Header({ onNavigate, user, onLogout }) {
                 </button>
               )}
             </div>
-
 
             <div className="block md:hidden">
               <button
